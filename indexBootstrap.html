@@ -1,0 +1,36 @@
+<!doctype html>
+
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Filmweb Common Movies</title>
+    <meta name="description" content="Filmweb Common Movies">
+    <meta name="author" content="Konrad Kopciuch">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+    crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r"
+    crossorigin="anonymous">
+
+
+</head>
+
+<body>
+    <h1>Filmweb Common Films</h1>
+    <div class="form-group">
+        <label for="usr">Name:</label>
+        <input type="text" class="form-control" id="usr" data-bind='value: userName'>
+    </div>
+    <button class="btn" data-bind='click: registerClick'>Add</button>
+    <ul id="result"></ul>
+    <script src="jquery-2.1.4.js"></script>
+    <script src="http://knockoutjs.com/downloads/knockout-3.4.0.debug.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+    crossorigin="anonymous"></script>
+    <script src="filmwebAPI.js"></script>
+    <script src="viewModel.js"></script>
+</body>
+
+</html>
