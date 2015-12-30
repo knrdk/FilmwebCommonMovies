@@ -1,5 +1,6 @@
 var CommonMoviesViewModel = function() {
     var self = this;
+    this.users = ko.observableArray(["Staszek", "Leszek"])
     this.userName = ko.observable("knrdk");
     this.movies = ko.observableArray()
     

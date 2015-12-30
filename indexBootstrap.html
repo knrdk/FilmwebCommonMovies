@@ -18,16 +18,49 @@
 </head>
 
 <body>
-    <h1>Filmweb Common Films</h1>
-    <div class="form-group">
-        <label for="usr">Name:</label>
-        <input type="text" class="form-control" id="usr" data-bind='value: userName'>
+    <div class="container">
+
+        <!-- Static navbar -->
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Common Movies</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav" data-bind="foreach: users">
+                        <li><a href="#" data-bind="text: $data">Contact</a></li>
+                    </ul>
+                    <form class="navbar-form navbar-right">
+                        <ul class="nav navbar-nav navbar-right">
+                            <div class="form-group">
+                                <input type="text" class="form-control" data-bind='value: userName'>
+                            </div>
+                            <button class="btn" data-bind='click: registerClick'>Add</button>
+                        </ul>
+                    </form>
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+            <!--/.container-fluid -->
+        </nav>
+
+        <!-- Main component for a primary marketing message or call to action -->
+        <div class="jumbotron">
+            <ul data-bind="foreach: movies">
+                <li data-bind="text: title"></li>
+            </ul>
+        </div>
+
     </div>
-    <button class="btn" data-bind='click: registerClick'>Add</button>
-    
-    <ul data-bind="foreach: movies">
-        <li data-bind="text: title"></li>
-    </ul>
+    <!-- /container -->
+
     <script src="jquery-2.1.4.js"></script>
     <script src="http://knockoutjs.com/downloads/knockout-3.4.0.debug.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
