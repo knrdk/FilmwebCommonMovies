@@ -38,8 +38,14 @@ function processMovies(r) {
 
 $(document).ready(function () {
     var moviesHtml;
-    $.get("http://cors.io/?u=http://www.filmweb.pl/user/knrdk/films/wanna-see", function (my_var) {
-        moviesHtml = $(my_var).find(".wantToSeeSee > tbody > tr");
-        processMovies(moviesHtml);
+    
+    $.ajax({
+        url: "http://www.filmweb.pl/user/knrdk/films/wanna-see", //http://cors.io/?u=
+        type: "GET",
+        crossDomain: true,
+        success: function (response) {
+            moviesHtml = $(response).find(".wantToSeeSee > tbody > tr");
+            processMovies(moviesHtml);
+        }
     });
 });
