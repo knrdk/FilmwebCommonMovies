@@ -34,13 +34,15 @@
                     <a class="navbar-brand" href="#">Common Movies</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav" data-bind="foreach: users">
-                        <li><a href="#" data-bind="text: $data">Contact</a></li>
-                    </ul>
+                    <form class="navbar-form navbar-left" data-bind="foreach: users">
+                        <button class="btn" 
+                        data-bind="text: name, click: $root.selectUser, css: {'btn-success': showSuccess, 'btn-danger': showDanger, 'btn-warning': showWarning}">
+                        </button>
+                    </form>
                     <form class="navbar-form navbar-right">
                         <ul class="nav navbar-nav navbar-right">
                             <div class="form-group">
-                                <input type="text" class="form-control" data-bind='value: userName'>
+                                <input type="text" class="form-control" data-bind='value: newUserName'>
                             </div>
                             <button class="btn" data-bind='click: registerClick'>Add</button>
                         </ul>
@@ -52,7 +54,7 @@
         </nav>
 
         <!-- Main component for a primary marketing message or call to action -->
-        <div class="jumbotron">
+        <div class="jumbotron" data-bind="with: currentUser">
             <ul data-bind="foreach: movies">
                 <li data-bind="text: title"></li>
             </ul>

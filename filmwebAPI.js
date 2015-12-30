@@ -22,13 +22,13 @@ function getMovies(userName, callback) {
         success: function (response) {
             moviesHtml = $(response).find(".wantToSeeSee > tbody > tr");
 
-            var a = []
+            var movies = []
             //TODO: check synchronization: each
             $(moviesHtml).each(function (index, movieHtml) {
-                a.push(parseFilm(movieHtml));
+                movies.push(parseFilm(movieHtml));
             });
             
-            callback(a);
+            callback(userName, movies);
         }
     });
 }
