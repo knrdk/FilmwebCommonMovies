@@ -19,8 +19,6 @@
 
 <body>
     <div class="container">
-
-        <!-- Static navbar -->
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -35,8 +33,7 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <form class="navbar-form navbar-left" data-bind="foreach: users">
-                        <button class="btn" 
-                        data-bind="text: name, click: $root.selectUser, css: {'btn-success': showSuccess, 'btn-danger': showDanger, 'btn-warning': showWarning}">
+                        <button class="btn" data-bind="text: name, click: $root.selectUser, css: {'btn-success': showSuccess, 'btn-danger': showDanger, 'btn-warning': showWarning}">
                         </button>
                     </form>
                     <form class="navbar-form navbar-right">
@@ -48,27 +45,25 @@
                         </ul>
                     </form>
                 </div>
-                <!--/.nav-collapse -->
             </div>
-            <!--/.container-fluid -->
         </nav>
 
-        <!-- Main component for a primary marketing message or call to action -->
-        <div class="jumbotron" data-bind="with: currentUser">
-            <ul data-bind="foreach: movies">
-                <li data-bind="text: title"></li>
+        <div class="jumbotron">
+            <ul data-bind="foreach: commonMovies">
+                <li>
+                    <a data-bind="text: title, attr: { href: url } "></a>
+                </li>
             </ul>
         </div>
 
     </div>
-    <!-- /container -->
 
-    <script src="jquery-2.1.4.js"></script>
-    <script src="http://knockoutjs.com/downloads/knockout-3.4.0.debug.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-    crossorigin="anonymous"></script>
-    <script src="filmwebAPI.js"></script>
-    <script src="viewModel.js"></script>
+    <script src="jquery-2.1.4.js "></script>
+    <script src="http://knockoutjs.com/downloads/knockout-3.4.0.debug.js "></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js " integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS "
+    crossorigin="anonymous "></script>
+    <script src="filmwebAPI.js "></script>
+    <script src="viewModel.js "></script>
 </body>
 
 </html>
