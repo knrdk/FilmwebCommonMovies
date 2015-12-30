@@ -24,7 +24,10 @@
         <input type="text" class="form-control" id="usr" data-bind='value: userName'>
     </div>
     <button class="btn" data-bind='click: registerClick'>Add</button>
-    <ul id="result"></ul>
+    
+    <ul data-bind="foreach: movies">
+        <li data-bind="text: title"></li>
+    </ul>
     <script src="jquery-2.1.4.js"></script>
     <script src="http://knockoutjs.com/downloads/knockout-3.4.0.debug.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"

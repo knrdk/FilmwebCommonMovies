@@ -14,7 +14,7 @@ function parseFilm(film) {
     };
 }
 
-function getMovies(userName) {
+function getMovies(userName, callback) {
     $.ajax({
         url: "http://cors.io/?u=http://www.filmweb.pl/user/" + userName + "/films/wanna-see", //TODO: try to delete cors.io
         type: "GET",
@@ -27,8 +27,8 @@ function getMovies(userName) {
             $(moviesHtml).each(function (index, movieHtml) {
                 a.push(parseFilm(movieHtml));
             });
-            alert(a.length);
-            return a;
+            
+            callback(a);
         }
     });
 }
