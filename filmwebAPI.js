@@ -1,3 +1,12 @@
+function Movie(title, url){
+    this.title = title;
+    this.url = url;
+    
+    this.isEqual = function(that){
+        return this.url == that.url;  
+    };
+}
+
 function parseFilm(film) {
     function getFilmTitle(film) {
         return $(film).find('> td').attr('sorttable_customkey');
@@ -8,10 +17,7 @@ function parseFilm(film) {
         return baseUrl + $(film).find('> td > a').attr('href');
     }
 
-    return {
-        title: getFilmTitle(film),
-        url: getFilmUrl(film)
-    };
+    return new Movie(getFilmTitle(film), getFilmUrl(film));
 }
 
 function getMovies(userName, callback) {

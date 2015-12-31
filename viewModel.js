@@ -24,21 +24,46 @@ var CommonMoviesViewModel = function () {
 
     this.users = ko.observableArray();
     this.newUserName = ko.observable("knrdk");
-    this.currentUser = ko.observable();
+
+    self.getSelectedUsers = ko.computed(function(){
+        var users = []
+        
+        ko.utils.arrayForEach(self.users(), function (user) {
+                if (user.isSelected()) {
+                    users.push(user);
+                }
+            });
+        
+        return users;
+    });
 
     self.commonMovies = ko.computed(function () {
         var movies = [];
 
-        ko.utils.arrayForEach(self.users(), function (user) {
-            if (user.isSelected()) {
-                ko.utils.arrayForEach(user.movies(), function (movie) {
+        var users = self.getSelectedUsers();
+        if (users.length == 2) {
+            var m1 = users[0].movies();
+            var m2 = users[1].movies();
+
+            ko.utils.arrayForEach(m1, function (movie) {
+                if (containsMovie(movie, m2)) {
                     movies.push(movie);
-                });
-            }
-        });
+                }
+            });
+        }
 
         return movies;
     });
+    
+    containsMovie = function (movie, list) {
+        var contains = false;
+        ko.utils.arrayForEach(list, function (otherMovie) {
+            if (movie.isEqual(otherMovie)) {
+                contains = true;
+            }
+        });
+        return contains;
+    };
 
     this.registerClick = function () {
         var newUser = new User(this.newUserName());
@@ -51,7 +76,6 @@ var CommonMoviesViewModel = function () {
     this.selectUser = function (user) {
         var isSelected = user.isSelected();
         user.isSelected(!isSelected);
-        self.currentUser(user);
     };
 
     this.deleteUser = function (user) {
