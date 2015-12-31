@@ -3,7 +3,7 @@ function User(name) {
 
     self.name = name;
     self.movies = ko.observableArray();
-    self.isSelected = ko.observable(true);
+    self.isSelected = ko.observable(false);
     self.isLoaded = ko.observable(false);
 
     self.showSuccess = ko.computed(function () {
@@ -54,6 +54,10 @@ var CommonMoviesViewModel = function () {
         self.currentUser(user);
     };
 
+    this.deleteUser = function (user) {
+        self.users.remove(user);
+    }
+
     this.getUserForName = function (userName) {
         var output = null;
         ko.utils.arrayForEach(this.users(), function (user) {
@@ -65,11 +69,20 @@ var CommonMoviesViewModel = function () {
     }
 
     this.callback = function (userName, movies) {
-        var user = self.getUserForName(userName);
-        user.movies(movies);
-        user.isLoaded(true);
-        self.currentUser(user);
+        if (movies.length > 0) {
+            var user = self.getUserForName(userName);
+            user.isLoaded(true);
+            user.isSelected(true);
+            user.movies(movies);
+        } else {
+            showNoMoviesNotification(userName);
+        }
     };
+
+    showNoMoviesNotification = function (userName) {
+        toastr.options = { "timeOut": 0, "positionClass": "toast-bottom-right" };
+        toastr.warning('Brak filmów które użytkownik <b>' + userName + '</b> chce obejrzeć', 'Błąd!')
+    }
 };
 
 

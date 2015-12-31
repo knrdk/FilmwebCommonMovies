@@ -20,14 +20,14 @@ function getMovies(userName, callback) {
         type: "GET",
         crossDomain: true,
         success: function (response) {
-            moviesHtml = $(response).find(".wantToSeeSee > tbody > tr");
+            var moviesHtml = $(response).find(".wantToSeeSee > tbody > tr");
 
             var movies = []
             //TODO: check synchronization: each
             $(moviesHtml).each(function (index, movieHtml) {
                 movies.push(parseFilm(movieHtml));
             });
-            
+
             callback(userName, movies);
         }
     });
