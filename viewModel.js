@@ -25,36 +25,42 @@ var CommonMoviesViewModel = function () {
     this.users = ko.observableArray();
     this.newUserName = ko.observable("knrdk");
 
-    self.getSelectedUsers = ko.computed(function(){
+    self.getSelectedUsers = ko.computed(function () {
         var users = []
-        
+
         ko.utils.arrayForEach(self.users(), function (user) {
-                if (user.isSelected()) {
-                    users.push(user);
-                }
-            });
-        
+            if (user.isSelected()) {
+                users.push(user);
+            }
+        });
+
         return users;
     });
 
     self.commonMovies = ko.computed(function () {
-        var movies = [];
-
         var users = self.getSelectedUsers();
-        if (users.length == 2) {
-            var m1 = users[0].movies();
-            var m2 = users[1].movies();
-
-            ko.utils.arrayForEach(m1, function (movie) {
-                if (containsMovie(movie, m2)) {
-                    movies.push(movie);
-                }
-            });
+        
+        if (users.length < 1) {
+            return [];
+        } else {
+            var common = users[0].movies();
+            for(i=1; i < users.length; i++){
+                common = getIntersection(common, users[i].movies());
+            }
+            return common;            
         }
-
-        return movies;
     });
-    
+
+    getIntersection = function (listA, listB) {
+        var movies = [];
+        ko.utils.arrayForEach(listA, function (movie) {
+            if (containsMovie(movie, listB)) {
+                movies.push(movie);
+            }
+        });
+        return movies;
+    };
+
     containsMovie = function (movie, list) {
         var contains = false;
         ko.utils.arrayForEach(list, function (otherMovie) {
