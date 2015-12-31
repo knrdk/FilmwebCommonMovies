@@ -64,10 +64,10 @@
             -->
 
             <div class="container" data-bind="foreach: commonMovies">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <a class="thumbnail" data-bind="attr: { href: url } ">
-                        <p data-bind="text: title"></p>
-                        <img style="width:150px;height:150px" data-bind="attr: { src: image, alt: title } ">
+                        <!-- <p data-bind="text: title"></p> -->
+                        <img data-bind="attr: { src: image, alt: title } ">
                     </a>
                 </div>
             </div>
