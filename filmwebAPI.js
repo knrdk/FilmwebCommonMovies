@@ -1,23 +1,28 @@
-function Movie(title, url){
+function Movie(title, url, image){
     this.title = title;
     this.url = url;
+    this.image = image;
     
     this.isEqual = function(that){
         return this.url == that.url;  
     };
 }
 
-function parseFilm(film) {
-    function getFilmTitle(film) {
-        return $(film).find('> td').attr('sorttable_customkey');
+function parseFilm(movie) {
+    function getMovieTitle(movie) {
+        return $(movie).find('> td').attr('sorttable_customkey');
     }
 
-    function getFilmUrl(film) {
+    function getMovieUrl(movie) {
         baseUrl = 'http://www.filmweb.pl';
-        return baseUrl + $(film).find('> td > a').attr('href');
+        return baseUrl + $(movie).find('> td > a').attr('href');
+    }
+    
+    function getMovieImage(movie){
+        return baseUrl + $(movie).find('> td > a > img').attr('src');
     }
 
-    return new Movie(getFilmTitle(film), getFilmUrl(film));
+    return new Movie(getMovieTitle(movie), getMovieUrl(movie), getMovieImage(movie));
 }
 
 function getMovies(userName, callback) {
