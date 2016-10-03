@@ -34,7 +34,7 @@ function parseFilm(movie) {
 
 function getMovies(userName, callback) {
     $.ajax({
-        url: "http://cors.io/http://www.filmweb.pl/user/" + userName + "/films/wanna-see",
+        url: "http://cors.io/?http://www.filmweb.pl/user/" + userName + "/films/wanna-see",
         type: "GET",
         crossDomain: true,
         success: function (response) {
